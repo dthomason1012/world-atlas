@@ -1,3 +1,3 @@
 export default function Home() {
-  return <>Where in the World?</>;
+  return <>I am the homepage</>;
 }
