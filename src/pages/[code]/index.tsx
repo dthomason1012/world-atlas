@@ -9,7 +9,12 @@ export default function CountryDetail() {
   const { useFetchCountryByCode } = useCountries();
   const { data, isLoading } = useFetchCountryByCode(query.code as string);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <Flex w="100%" h="100vh" align="center" justify="center">
+        <Spinner size="xl" />
+      </Flex>
+    );
 
   return (
     <Flex direction="column" align="center">

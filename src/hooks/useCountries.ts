@@ -21,6 +21,7 @@ export interface Country {
   region: string;
   subregion: string;
   tld: string[];
+  cca3: string;
 }
 
 export const useCountries = () => {

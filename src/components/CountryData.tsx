@@ -53,7 +53,7 @@ export const CountryData: FC<CountryDataProps> = ({ country }) => {
               </Text>
               <Text>
                 <Text as="b">Capital: </Text>
-                {country?.capital[0]}
+                {country?.capital?.[0]}
               </Text>
             </Flex>
           </GridItem>
@@ -61,7 +61,7 @@ export const CountryData: FC<CountryDataProps> = ({ country }) => {
             <Flex direction="column" gap={2}>
               <Text>
                 <Text as="b">Top Level Domain: </Text>
-                {country?.tld.map((item, index) => [
+                {country?.tld?.map((item, index) => [
                   index > 0 && ", ",
                   `${item}`,
                 ])}
@@ -84,7 +84,7 @@ export const CountryData: FC<CountryDataProps> = ({ country }) => {
         <Flex mt={20} align="center">
           <Text as="b">Border Countries: </Text>
           <Flex wrap="wrap">
-            {country?.borders.map((code) => {
+            {country?.borders?.map((code) => {
               return (
                 <Button
                   m={2}
