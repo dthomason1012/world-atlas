@@ -1,9 +1,8 @@
 import {
-  fetchAllCountries,
   fetchCountryByCode,
+  filterCountries,
   searchCountries,
 } from "@/api/countries";
-import axios from "axios";
 import { useQuery } from "react-query";
 
 export interface Country {
@@ -25,9 +24,6 @@ export interface Country {
 }
 
 export const useCountries = () => {
-  const useFetchAllCountries = () => {
-    return useQuery<Country[], Error>(["countries"], fetchAllCountries);
-  };
   const useFetchCountryByCode = (code: string) => {
     return useQuery<Country[], Error>(
       ["countries", code],
@@ -37,19 +33,24 @@ export const useCountries = () => {
       }
     );
   };
+
   const useSearchCountries = (query: string) => {
     return useQuery<Country[], Error>(
       ["countries", query],
       () => searchCountries(query),
-      {
-        enabled: !!query,
-      }
+      { enabled: false }
+    );
+  };
+
+  const useFilterCountries = (filter: string, region?: string) => {
+    return useQuery<Country[], Error>(["countries", filter], () =>
+      filterCountries(filter, region)
     );
   };
 
   return {
-    useFetchAllCountries,
     useFetchCountryByCode,
     useSearchCountries,
+    useFilterCountries,
   };
 };

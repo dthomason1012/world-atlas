@@ -41,7 +41,7 @@ export const CountryData: FC<CountryDataProps> = ({ country }) => {
               </Text>
               <Text>
                 <Text as="b">Population: </Text>
-                {country?.population}
+                {country?.population.toLocaleString()}
               </Text>
               <Text>
                 <Text as="b">Region: </Text>
@@ -52,8 +52,13 @@ export const CountryData: FC<CountryDataProps> = ({ country }) => {
                 {country?.subregion}
               </Text>
               <Text>
-                <Text as="b">Capital: </Text>
-                {country?.capital?.[0]}
+                <Text as="b">
+                  {`Capital${country?.capital?.length > 1 ? "s: " : ": "}`}
+                </Text>
+                {country?.capital?.map((item, index) => [
+                  index > 0 && ", ",
+                  `${item}`,
+                ])}
               </Text>
             </Flex>
           </GridItem>
