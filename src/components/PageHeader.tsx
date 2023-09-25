@@ -1,8 +1,10 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { Button, Flex, Heading, useColorMode } from "@chakra-ui/react";
+import { Flex, Heading, Switch, useColorMode } from "@chakra-ui/react";
 import "@fontsource/nunito-sans";
+import { useRouter } from "next/router";
 
 export const PageHeader = () => {
+  const { push } = useRouter();
   const { toggleColorMode, colorMode } = useColorMode();
 
   return (
@@ -15,26 +17,20 @@ export const PageHeader = () => {
       justify="space-between"
       boxShadow="md"
     >
-      <Heading fontFamily="Nunito Sans" fontWeight="bold" size="lg">
+      <Heading
+        fontFamily="Nunito Sans"
+        fontWeight="bold"
+        size="lg"
+        onClick={() => push("/")}
+        _hover={{ cursor: "pointer" }}
+      >
         Where in the World?
       </Heading>
-      <Button
-        fontSize="md"
-        variant="unstyled"
-        onClick={() => toggleColorMode()}
-      >
-        {colorMode === "light" ? (
-          <Flex gap={2} align="center">
-            <MoonIcon />
-            Dark Mode
-          </Flex>
-        ) : (
-          <Flex gap={2} align="center">
-            <SunIcon />
-            Light Mode
-          </Flex>
-        )}
-      </Button>
+      <Flex align="center" gap={4}>
+        <MoonIcon />
+        <Switch size="md" onChange={() => toggleColorMode()} />
+        <SunIcon />
+      </Flex>
     </Flex>
   );
 };

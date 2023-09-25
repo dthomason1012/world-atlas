@@ -1,14 +1,10 @@
 import {
-  Box,
   Card,
   CardBody,
-  CardHeader,
-  Flex,
   Heading,
   Image,
   Text,
   useColorMode,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { FC } from "react";
 
@@ -55,15 +51,17 @@ export const OverviewCard: FC<OverviewProps> = ({
         </Heading>
         <Text>
           <Text as="b">Population: </Text>
-          {population}
+          {population.toLocaleString()}
         </Text>
         <Text>
           <Text as="b">Region: </Text>
           {region}
         </Text>
         <Text>
-          <Text as="b">{capital && "Capital: "}</Text>
-          {capital ?? ""}
+          <Text as="b">
+            {capital && `Capital${capital.length > 1 ? "s: " : ": "}`}
+          </Text>
+          {capital?.map((item, index) => [index > 0 && ", ", `${item}`])}
         </Text>
       </CardBody>
     </Card>
