@@ -1,16 +1,8 @@
 import { Country } from "@/hooks/useCountries";
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  GridItem,
-  Image,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Image, Heading, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC } from "react";
+import { BorderButton } from "./BorderButton";
 
 interface CountryDataProps {
   country: Country;
@@ -90,16 +82,7 @@ export const CountryData: FC<CountryDataProps> = ({ country }) => {
           <Text as="b">Border Countries: </Text>
           <Flex wrap="wrap">
             {country?.borders?.map((code) => {
-              return (
-                <Button
-                  m={2}
-                  boxShadow="md"
-                  key={code}
-                  onClick={() => push(`/${code}`)}
-                >
-                  {code}
-                </Button>
-              );
+              return <BorderButton code={code} key={code} />;
             })}
           </Flex>
         </Flex>
